@@ -14,11 +14,11 @@ enum LogLevel{
 impl std::fmt::Display for LogLevel {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            LogLevel::Debug => write!(f,"debug"),
-            LogLevel::Info => write!(f,"info"),
-            LogLevel::Warn => write!(f,"warn"),
-            LogLevel::Error => write!(f,"error"),
-            LogLevel::Critical => write!(f,"critical"),   
+            LogLevel::Debug => write!(f,"👀"),
+            LogLevel::Info => write!(f,"✅"),
+            LogLevel::Warn => write!(f,"🚧"),
+            LogLevel::Error => write!(f,"🙀"),
+            LogLevel::Critical => write!(f,"❗"),   
         }
     }
 }
@@ -28,7 +28,7 @@ fn log<T: std::fmt::Display>(level: LogLevel, message: &T){
     let timestamp: DateTime<Utc> = SystemTime::now().into();
     let timestamp = timestamp.to_rfc3339();
 
-    println!("{}  {}  {}", timestamp, level, message)
+    println!("{} {} {}", timestamp, level, message)
 }
 
 pub fn debug<T: std::fmt::Display>(message: &T){

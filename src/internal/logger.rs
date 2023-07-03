@@ -27,19 +27,20 @@ impl std::fmt::Display for LogLevel {
 fn log<T: std::fmt::Display>(level: LogLevel, message: &T, context: Option<HashMap<&str, &str>>){
     let timestamp: DateTime<Utc> = SystemTime::now().into();
     
-    let mut result = format!("{} |{} | {}", timestamp.format("%Y-%m-%d %H:%M:%S.%f"), level, message);
-
+    
+    let mut ctx_str = String::new();
     match context{
         Some(ctx) =>{
-
+            
             for (key, value) in ctx{
-                result.push_str(format!(" {}={}", key, value).as_str())
+                ctx_str.push_str(format!(" {}={}", key, value).as_str())
             }
-
+            
         },
         None => (),
     }
-    println!("{}", result)
+    println!("{} |{:<10}| {} {}", timestamp.format("%Y-%m-%d %H:%M:%S.%3f"), level.to_string(), message, ctx_str);
+    
 }
 
 pub fn debug<T: std::fmt::Display>(message: &T, context: Option<HashMap<&str, &str>>){

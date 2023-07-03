@@ -1,27 +1,29 @@
+use std::collections::HashMap;
+
 use pyo3::prelude::*;
 
 mod internal;
 
 #[pyfunction]
-fn debug(message: String){
-    internal::logger::debug(&message)
+fn debug(message: String, context: Option<HashMap<&str,&str>>){
+    internal::logger::debug(&message, context)
 }
 
 #[pyfunction]
-fn info(message: String){
-    internal::logger::info(&message)
+fn info(message: String, context: Option<HashMap<&str,&str>>){
+    internal::logger::info(&message, context)
 }
 #[pyfunction]
-fn warn(message: String){
-    internal::logger::warn(&message)
+fn warn(message: String, context: Option<HashMap<&str,&str>>){
+    internal::logger::warn(&message, context)
 }
 #[pyfunction]
-fn error(message: String){
-    internal::logger::error(&message)
+fn error(message: String, context: Option<HashMap<&str,&str>>){
+    internal::logger::error(&message, context)
 }
 #[pyfunction]
-fn critical(message: String){
-    internal::logger::critical(&message)
+fn critical(message: String, context: Option<HashMap<&str,&str>>){
+    internal::logger::critical(&message, context)
 }
 
 /// A Python module implemented in Rust.
